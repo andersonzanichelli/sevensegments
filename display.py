@@ -1,36 +1,27 @@
-dic = {
-    0: [(' ', '-', ' '), ('|', ' ', '|'), (' ', ' ', ' '), ('|', ' ', '|'), (' ', '-', ' ')],
-    1: [(' ', ' ', ' '), (' ', ' ', '|'), (' ', ' ', ' '), (' ', ' ', '|'), (' ', ' ', ' ')],
-    2: [(' ', '-', ' '), (' ', ' ', '|'), (' ', '-', ' '), ('|', ' ', ' '), (' ', '-', ' ')],
-    3: [(' ', '-', ' '), (' ', ' ', '|'), (' ', '-', ' '), (' ', ' ', '|'), (' ', '-', ' ')],
-    4: [(' ', ' ', ' '), ('|', ' ', '|'), (' ', '-', ' '), (' ', ' ', '|'), (' ', ' ', ' ')],
-    5: [(' ', '-', ' '), ('|', ' ', ' '), (' ', '-', ' '), (' ', ' ', '|'), (' ', '-', ' ')],
-    6: [(' ', '-', ' '), ('|', ' ', ' '), (' ', '-', ' '), ('|', ' ', '|'), (' ', '-', ' ')],
-    7: [(' ', '-', ' '), (' ', ' ', '|'), (' ', ' ', ' '), (' ', ' ', '|'), (' ', ' ', ' ')],
-    8: [(' ', '-', ' '), ('|', ' ', '|'), (' ', '-', ' '), ('|', ' ', '|'), (' ', '-', ' ')],
-    9: [(' ', '-', ' '), ('|', ' ', '|'), (' ', '-', ' '), (' ', ' ', '|'), (' ', '-', ' ')]
-}
+dic = { 0: [(' ', '-', ' '), ('|', ' ', '|'), (' ', ' ', ' '), ('|', ' ', '|'), (' ', '-', ' ')], 
+		1: [(' ', ' ', ' '), (' ', ' ', '|'), (' ', ' ', ' '), (' ', ' ', '|'), (' ', ' ', ' ')],    
+		2: [(' ', '-', ' '), (' ', ' ', '|'), (' ', '-', ' '), ('|', ' ', ' '), (' ', '-', ' ')],    
+		3: [(' ', '-', ' '), (' ', ' ', '|'), (' ', '-', ' '), (' ', ' ', '|'), (' ', '-', ' ')],    
+		4: [(' ', ' ', ' '), ('|', ' ', '|'), (' ', '-', ' '), (' ', ' ', '|'), (' ', ' ', ' ')],    
+		5: [(' ', '-', ' '), ('|', ' ', ' '), (' ', '-', ' '), (' ', ' ', '|'), (' ', '-', ' ')],    
+		6: [(' ', '-', ' '), ('|', ' ', ' '), (' ', '-', ' '), ('|', ' ', '|'), (' ', '-', ' ')],    
+		7: [(' ', '-', ' '), (' ', ' ', '|'), (' ', ' ', ' '), (' ', ' ', '|'), (' ', ' ', ' ')],    
+		8: [(' ', '-', ' '), ('|', ' ', '|'), (' ', '-', ' '), ('|', ' ', '|'), (' ', '-', ' ')],    
+		9: [(' ', '-', ' '), ('|', ' ', '|'), (' ', '-', ' '), (' ', ' ', '|'), (' ', '-', ' ')] }
 
 def run():
     print 'The 7 segments display.\n'
     size = input('Enter the size of the display: ')
     inputNumbers = input('Enter the numbers that you want display (comma separated: 1,2,3): ')
-    numbers = []
-
-    if isinstance(inputNumbers, int):
-        numbers = [inputNumbers]
-    else:
-        numbers = [int(c) for c in inputNumbers]
+    numbers = [inputNumbers] if isinstance(inputNumbers, int) else [int(c) for c in inputNumbers]
 
     display(mapped_numbers(numbers), size)
 
 def mapped_numbers(numbers):
-	mapped = []
+	return [dic[number] for number in numbers]
 
-	for number in numbers:
-		mapped.append(dic[number])
-
-	return mapped
+def my_print(s):
+	print s,
 
 def display(mapped, size):
 	top       = [d[0][0] + d[0][1] * size + d[0][2] for d in mapped]
@@ -39,26 +30,21 @@ def display(mapped, size):
 	midbotton = [d[3][0] + d[3][1] * size + d[3][2] for d in mapped]
 	botton    = [d[4][0] + d[4][1] * size + d[4][2] for d in mapped]
 
-	for t in top:
-		print t,
+	map(my_print, top)
 	print
 
 	for x in range(size):
-		for mt in midtop:
-			print mt,
+		map(my_print, midtop)
 		print
 
-	for m in mid:
-		print m,
+	map(my_print, mid)
 	print
 
 	for x in range(size):
-		for mb in midbotton:
-			print mb,
+		map(my_print, midbotton)
 		print
 
-	for b in botton:
-		print b,
+	map(my_print, botton)
 	print
 
 run()
